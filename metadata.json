@@ -1,0 +1,6 @@
+{
+  "name": "IVY Prints",
+  "description": "India's Fastest ID Card Printing & Vendor Software for B2B printing vendors and shop owners.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
