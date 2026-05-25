@@ -87,7 +87,7 @@ export default function Contact({ onPageChange }: ContactProps) {
     <div id="contact-page" className="bg-[#F8FAFC] text-[#0A1628] min-h-screen font-sans overflow-x-hidden pt-16">
       
       {/* ── CINEMATIC LIGHT HERO SECTION ── */}
-      <section className="relative w-screen min-h-[85vh] flex flex-col items-center justify-center px-4 py-16 text-center bg-gradient-to-br from-[#EAF6FF] via-[#FFFFFF] to-[#FFF8E7] overflow-hidden border-b border-slate-200/60">
+      <section className="relative w-full min-h-[85vh] flex flex-col items-center justify-center px-4 py-16 text-center bg-gradient-to-br from-[#EAF6FF] via-[#FFFFFF] to-[#FFF8E7] overflow-hidden border-b border-slate-200/60">
         
         {/* Subtle decorative grid backdrop */}
         <div className="absolute inset-0 opacity-[0.4] bg-grid-lines-40 pointer-events-none" />

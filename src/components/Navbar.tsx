@@ -111,15 +111,30 @@ export default function Navbar({ currentPage, onPageChange }: NavbarProps) {
           </div>
 
           {/* MOBILE MENU TOGGLE BUTTON */}
-          <div className="flex md:hidden items-center gap-2">
-
+          <div className="flex md:hidden items-center gap-1.5">
+            <button 
+              type="button"
+              id="signin-btn-header-mobile"
+              onClick={() => handleNavClick('signin')}
+              className="px-2.5 py-1.5 border border-[#0A1628]/25 rounded-md text-[11px] text-[#0A1628] font-sans font-semibold hover:bg-slate-50 transition active:scale-95 duration-100 cursor-pointer"
+            >
+              Sign In
+            </button>
+            <button 
+              type="button"
+              id="signup-btn-header-mobile"
+              onClick={() => handleNavClick('contact')}
+              className="px-2.5 py-1.5 bg-[#00AEEF] text-white hover:bg-[#0096ce] rounded-md text-[11px] font-sans font-black flex items-center shadow-md active:scale-95 duration-100 cursor-pointer"
+            >
+              Start Today
+            </button>
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg bg-slate-50 text-[#0A1628] hover:bg-slate-100 transition"
+              className="p-1.5 rounded-md bg-slate-50 text-[#0A1628] hover:bg-slate-100 transition cursor-pointer"
               id="mobile-menu-burger"
               aria-label="Toggle mobile menu"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
 

@@ -143,7 +143,7 @@ export default function AIShowcase() {
               </span>
             </h2>
 
-            <p className="text-slate-400 text-sm leading-relaxed max-w-md">
+            <p className="text-slate-400 text-sm leading-relaxed max-w-md pr-2 lg:pr-0">
               Rather than hiring expensive graphic operators during peak Indian school renewal season
               (June–August), let our localized intelligence suite handle routine cropping, alignment,
               and background removal automatically.

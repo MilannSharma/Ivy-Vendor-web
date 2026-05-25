@@ -404,27 +404,27 @@ export default function Home({ onPageChange }: HomeProps) {
 
               {/* Trust Badges */}
               <div className="pt-4 border-t border-slate-200/60 max-w-md">
-                <div className="grid grid-cols-3 gap-3 font-mono text-[11px] text-[#0A1628]">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 font-mono text-[10px] sm:text-[11px] text-[#0A1628]">
                   <div className="flex flex-col items-start">
-                    <span className="font-bold text-[#FFB800] flex items-center gap-1 text-base leading-none mb-1">
-                      <Star className="w-4 h-4 text-[#FFB800] fill-[#FFB800] shrink-0" />
+                    <span className="font-bold text-[#FFB800] flex items-center gap-1 text-sm sm:text-base leading-none mb-1">
+                      <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FFB800] fill-[#FFB800] shrink-0" />
                       50+
                     </span>
-                    <span className="text-slate-500 uppercase text-[9px] tracking-wider">Cities Covered</span>
+                    <span className="text-slate-500 uppercase text-[7px] xs:text-[8px] sm:text-[9px] tracking-wider">Cities Covered</span>
                   </div>
                   <div className="flex flex-col items-start">
-                    <span className="font-bold text-[#00AEEF] flex items-center gap-1 text-base leading-none mb-1">
-                      <Zap className="w-4 h-4 text-[#00AEEF] fill-[#00AEEF] shrink-0" />
+                    <span className="font-bold text-[#00AEEF] flex items-center gap-1 text-sm sm:text-base leading-none mb-1">
+                      <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00AEEF] fill-[#00AEEF] shrink-0" />
                       99%
                     </span>
-                    <span className="text-slate-500 uppercase text-[9px] tracking-wider">On-Time Drafts</span>
+                    <span className="text-slate-500 uppercase text-[7px] xs:text-[8px] sm:text-[9px] tracking-wider">On-Time Drafts</span>
                   </div>
                   <div className="flex flex-col items-start">
-                    <span className="font-bold text-[#0A1628] flex items-center gap-1 text-base leading-none mb-1">
-                      <TrendingUp className="w-4 h-4 text-[#00AEEF] shrink-0" />
+                    <span className="font-bold text-[#0A1628] flex items-center gap-1 text-sm sm:text-base leading-none mb-1">
+                      <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00AEEF] shrink-0" />
                       10K+
                     </span>
-                    <span className="text-slate-500 uppercase text-[9px] tracking-wider">Records/Batch</span>
+                    <span className="text-slate-500 uppercase text-[7px] xs:text-[8px] sm:text-[9px] tracking-wider">Records/Batch</span>
                   </div>
                 </div>
               </div>
@@ -1031,7 +1031,7 @@ export default function Home({ onPageChange }: HomeProps) {
 
             {/* Hidden Scrollbar Container for Tab List */}
             <div 
-              className="flex-1 flex justify-center gap-1 md:gap-3 overflow-x-auto px-2 select-none scrollbar-none"
+              className="flex-1 flex justify-start sm:justify-center gap-1 md:gap-3 overflow-x-auto px-2 select-none scrollbar-none"
             >
               {(['projects', 'records', 'batches', 'templates', 'ai_insights'] as const).map((tab) => (
                 <button
@@ -1444,7 +1444,7 @@ export default function Home({ onPageChange }: HomeProps) {
           </h2>
 
           <p className="sans-serif text-sm text-slate-350 max-w-lg mx-auto leading-relaxed">
-            Join hundreds of trusted printing vendors scaling from Dwarka to Hyderbad. Upload details, crop, and run batches free with no risk.
+            Join hundreds of trusted printing vendors scaling from Dwarka to Hyderabad. Upload details, crop, and run batches free with no risk.
           </p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">

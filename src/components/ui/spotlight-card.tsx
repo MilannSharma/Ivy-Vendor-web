@@ -97,7 +97,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       backgroundAttachment: 'fixed',
       border: 'var(--border-size) solid var(--backup-border)',
       position: 'relative',
-      touchAction: 'none',
+      touchAction: 'pan-y', // Allow native vertical scrolling on touch screens
     };
 
     if (width !== undefined) {
@@ -159,6 +159,16 @@ const GlowCard: React.FC<GlowCardProps> = ({
     [data-glow] > [data-glow]::before {
       inset: -10px;
       border-width: 10px;
+    }
+    @media (max-width: 767px) {
+      [data-glow] {
+        background-image: none !important;
+        background-attachment: scroll !important;
+      }
+      [data-glow]::before,
+      [data-glow]::after {
+        display: none !important;
+      }
     }
   `;
 
