@@ -118,7 +118,10 @@ import {
   FileText,
   Star,
   Folder,
-  Globe
+  Globe,
+  Camera,
+  QrCode,
+  UserCheck
 } from 'lucide-react';
 
 interface HomeProps {
@@ -237,6 +240,21 @@ const cardDesigns: IDCardData[] = [
 
 const TABS_ORDER = ['projects', 'records', 'batches', 'templates', 'ai_insights'] as const;
 
+const APP_SLIDES = [
+  {
+    badge: "SMART CAMERA",
+    title: "AI Auto Crop & Face Guidance",
+    description: "Align face inside the guiding box. The AI tracks head posture and dynamically auto-crops standard biometric frames instantly.",
+    image: "/app screenshot/slide 3.jpeg"
+  },
+  {
+    badge: "AI BACKDROP",
+    title: "Real-Time BG Remove & Replace",
+    description: "Automatically remove background clutter and replace it with clean studio colors (blue, white, transparent) with zero watermarks.",
+    image: "/app screenshot/slide 4.jpeg"
+  }
+];
+
 export default function Home({ onPageChange }: HomeProps) {
   const [activePreviewTab, setActivePreviewTab] = useState<'projects' | 'records' | 'batches' | 'templates' | 'ai_insights'>('projects');
   const [showDemoModal, setShowDemoModal] = useState(false);
@@ -245,6 +263,7 @@ export default function Home({ onPageChange }: HomeProps) {
   const [activeTestiIndex, setActiveTestiIndex] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const [autoplayActive, setAutoplayActive] = useState(true);
+  const [activeAppSlide, setActiveAppSlide] = useState(0);
 
   // Screen size detection for card translations
   useEffect(() => {
@@ -264,6 +283,14 @@ export default function Home({ onPageChange }: HomeProps) {
     }, 4500);
     return () => clearInterval(timer);
   }, [autoplayActive]);
+
+  // Mobile App Slideshow Autoplay
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveAppSlide(prev => (prev + 1) % APP_SLIDES.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   const handlePrevCard = () => {
     setActiveCardIndex(prev => (prev - 1 + cardDesigns.length) % cardDesigns.length);
@@ -996,6 +1023,8 @@ export default function Home({ onPageChange }: HomeProps) {
         </div>
       </section>
 
+
+
       {/* SECTION 1.7: PLATFORM PREVIEW - INTERACTIVE MOCKUP */}
       <section className="py-20 bg-[#F4F7FB]/70 border-y border-slate-200/60 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1253,6 +1282,161 @@ export default function Home({ onPageChange }: HomeProps) {
 
       {/* SECTION 1.8: AI FEATURE SPOTLIGHT - HIGH-PERFORMANCE ANIMATED DEMO */}
       <AIShowcase />
+
+      {/* SECTION 1.6.5: DEDICATED MOBILE APP EXPERIENCE */}
+      <section className="py-24 bg-gradient-to-br from-[#060D1F] via-[#0A1628] to-[#040812] text-white border-t border-slate-900 relative overflow-hidden">
+        {/* Ambient glowing backdrops */}
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00AEEF]/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/3 right-1/4 translate-x-1/2 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Side: Content & Action Selectors */}
+            <div className="lg:col-span-7 space-y-8 text-left">
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00AEEF]/10 border border-[#00AEEF]/20 text-[#00AEEF] font-mono text-[10px] font-bold uppercase tracking-wider">
+                  <Smartphone className="w-3.5 h-3.5" />
+                  <span>On-Field Mobile Toolkit</span>
+                </div>
+                <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.15]">
+                  Dedicated B2B Mobile App <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00AEEF] to-[#FFB800]">For Smart On-Field Collection.</span>
+                </h2>
+                <p className="font-sans text-xs sm:text-sm text-slate-400 max-w-xl leading-relaxed">
+                  We have a dedicated B2B mobile app for seamless on-site operations.<br />
+                  Vendors and school staff can log in, capture photos, and update details on the go.
+                </p>
+              </div>
+
+              {/* Quick Highlight Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-y border-slate-800/80 py-5 text-left">
+                <div className="flex items-start gap-2.5">
+                  <span className="text-[#00AEEF] text-xs mt-0.5">👤</span>
+                  <div>
+                    <h5 className="font-sans font-bold text-xs text-white">Vendor Portal & Capture</h5>
+                    <p className="font-sans text-[10px] text-slate-400 mt-0.5 leading-snug">Log in as a vendor to assign tasks, shoot photos, and sync databases.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="text-yellow-400 text-xs mt-0.5">🏫</span>
+                  <div>
+                    <h5 className="font-sans font-bold text-xs text-white">Staff Login & Roster Updates</h5>
+                    <p className="font-sans text-[10px] text-slate-400 mt-0.5 leading-snug">School staff log in directly to edit student details, upload, or capture missing data.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="text-emerald-400 text-xs mt-0.5">✨</span>
+                  <div>
+                    <h5 className="font-sans font-bold text-xs text-white">No Watermarks</h5>
+                    <p className="font-sans text-[10px] text-slate-400 mt-0.5 leading-snug">100% clean and watermark-free B2B photo exports for printing.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="text-purple-400 text-xs mt-0.5">⚡</span>
+                  <div>
+                    <h5 className="font-sans font-bold text-xs text-white">Auto BG Remove & Capture</h5>
+                    <p className="font-sans text-[10px] text-slate-400 mt-0.5 leading-snug">Instant face alignment autofocus capture with automatic studio backdrop replacement.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Interactive Slide Controls */}
+              <div className="space-y-3.5">
+                <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block font-bold">SELECT INTERACTIVE DEMO SLIDES:</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  {APP_SLIDES.map((slide, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => setActiveAppSlide(index)}
+                      className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 ${
+                        activeAppSlide === index
+                          ? 'bg-[#0F1D38] border-[#00AEEF] shadow-lg shadow-[#00AEEF]/5 text-white ring-1 ring-[#00AEEF]/30'
+                          : 'bg-slate-900/40 border-slate-800/70 text-slate-400 hover:bg-slate-900/80 hover:text-slate-200'
+                      }`}
+                    >
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 font-display font-black text-xs ${
+                        activeAppSlide === index ? 'bg-[#00AEEF] text-white' : 'bg-slate-800 text-slate-400'
+                      }`}>
+                        {index === 0 ? <Camera className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[7.5px] font-mono uppercase font-bold tracking-wider text-slate-400 block">{slide.badge}</span>
+                        <h4 className="font-sans font-bold text-xs leading-none">{slide.title}</h4>
+                        <p className="font-sans text-[10px] leading-snug line-clamp-1 opacity-80">
+                          {slide.badge === 'VENDOR ACCESS' && 'Vendor dashboard portal'}
+                          {slide.badge === 'STAFF ACCESS' && 'Client coordinator portal'}
+                          {slide.badge === 'SMART CAMERA' && 'Face crop capture guidance'}
+                          {slide.badge === 'AI BG REMOVE' && 'Instant studio backdrops'}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side: Interactive Smart Phone Mockup */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center relative lg:translate-y-16 lg:mt-8">
+              
+              {/* Faded background text */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none text-[8rem] lg:text-[10rem] font-black text-white/[0.01] tracking-widest font-display rotate-90 uppercase">
+                APP VIEW
+              </div>
+
+              <div className="relative w-full max-w-[280px] h-[580px] rounded-[3rem] iphone-bezel flex flex-col z-10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] border border-slate-800">
+                {/* Physical Hardware Buttons */}
+                <div className="absolute top-[120px] -left-[3px] w-[3px] h-[25px] bg-slate-800 rounded-l-md" />
+                <div className="absolute top-[160px] -left-[3px] w-[3px] h-[45px] bg-slate-800 rounded-l-md" />
+                <div className="absolute top-[220px] -left-[3px] w-[3px] h-[45px] bg-slate-800 rounded-l-md" />
+                <div className="absolute top-[170px] -right-[3px] w-[3px] h-[70px] bg-slate-800 rounded-r-md" />
+
+                {/* Inner Screen Container */}
+                <div className="absolute inset-[6px] bg-[#070D19] rounded-[2.5rem] overflow-hidden text-white z-10">
+                  
+                  {/* Screen Top Status bar */}
+                  <div className="absolute top-0 inset-x-0 h-10 px-6 flex items-center justify-between text-[8px] font-mono text-slate-350 z-30 pointer-events-none">
+                    <span>9:41</span>
+                    {/* Dynamic Island */}
+                    <div className="w-[85px] h-[20px] bg-black rounded-full shadow-inner flex items-center justify-end px-2.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#00AEEF] animate-pulse" />
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span>📶</span>
+                      <span>🔋</span>
+                    </div>
+                  </div>
+
+                  {/* App Screen Screenshot Image */}
+                  <div className="w-full h-full relative overflow-hidden bg-[#070D19]">
+                    <img 
+                      key={activeAppSlide}
+                      src={APP_SLIDES[activeAppSlide].image} 
+                      alt={APP_SLIDES[activeAppSlide].title} 
+                      className="w-full h-full object-contain animate-fade-in animate-duration-300"
+                    />
+                  </div>
+
+                  {/* Screen bottom bar */}
+                  <div className="absolute bottom-0 inset-x-0 h-6 flex items-center justify-center bg-gradient-to-t from-black/80 to-transparent z-25 pointer-events-none">
+                    <div className="w-24 h-1 bg-white/40 rounded-full" />
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Active slide description details bubble underneath phone */}
+              <div className="mt-6 p-4 bg-slate-900/60 border border-slate-800/80 rounded-2xl max-w-sm text-center lg:text-left shadow-md">
+                <span className="font-mono text-[8px] text-[#00AEEF] uppercase font-black tracking-widest block mb-1">Active Slide Description</span>
+                <p className="font-sans text-[11px] text-slate-350 leading-relaxed">{APP_SLIDES[activeAppSlide].description}</p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* SECTION 1.9: TESTIMONIAL CAROUSEL */}
       <section className="bg-slate-50/50 py-20 overflow-hidden relative">
