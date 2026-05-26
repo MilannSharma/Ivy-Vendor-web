@@ -14,7 +14,8 @@ import {
   ArrowLeft,
   Smartphone,
   CheckCircle2,
-  Printer
+  Printer,
+  Home as HomeIcon
 } from 'lucide-react';
 
 interface SignUpProps {
@@ -23,6 +24,7 @@ interface SignUpProps {
 
 export default function SignUp({ onPageChange }: SignUpProps) {
   const [step, setStep] = useState(1);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -138,7 +140,7 @@ export default function SignUp({ onPageChange }: SignUpProps) {
     // Simulate merchant onboard node creation
     setTimeout(() => {
       setIsLoading(false);
-      window.location.href = 'https://projects-ivy.pages.dev';
+      setShowSuccess(true);
     }, 2000);
   };
 
@@ -493,6 +495,82 @@ export default function SignUp({ onPageChange }: SignUpProps) {
         </p>
 
       </div>
+
+      {/* Success Modal Overlay */}
+      {showSuccess && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop blur overlay */}
+          <div 
+            className="absolute inset-0 bg-[#0A1628]/60 backdrop-blur-md transition-opacity duration-300 animate-in fade-in"
+            onClick={() => {
+              setShowSuccess(false);
+              onPageChange('home');
+            }}
+          />
+          
+          {/* Pop-up Card */}
+          <div className="relative bg-white rounded-3xl border border-slate-200 shadow-2xl p-8 max-w-md w-full text-center overflow-hidden transform transition-all duration-300 scale-100 flex flex-col items-center z-10 animate-in zoom-in-95 duration-200">
+            
+            {/* Top decorative gradient bar */}
+            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#00AEEF] to-[#0096ce]" />
+            
+            {/* Animated Success Icon */}
+            <div className="relative mb-6 mt-2 flex items-center justify-center">
+              {/* Outer pulsing ring */}
+              <span className="absolute inline-flex h-20 w-20 rounded-full bg-emerald-100 animate-ping opacity-75" />
+              {/* Inner container */}
+              <div className="relative w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                <CheckCircle2 className="w-10 h-10 animate-bounce" />
+              </div>
+            </div>
+            
+            {/* Registration Success Heading */}
+            <h3 className="text-2xl font-display font-black text-[#0A1628] uppercase tracking-wide">
+              Registered Successfully!
+            </h3>
+            
+            {/* Content text */}
+            <p className="font-sans text-sm text-slate-600 mt-3 mb-6 leading-relaxed">
+              You have registered successfully - our agent will reach you soon to process further.
+            </p>
+            
+            {/* Details Box */}
+            <div className="w-full bg-slate-50 border border-slate-100 rounded-xl p-4 text-left mb-6 font-sans text-xs space-y-2">
+              <div className="flex justify-between">
+                <span className="text-slate-400">Business Name:</span>
+                <span className="font-semibold text-slate-700">{formData.shopName || 'N/A'}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-400">Contact Number:</span>
+                <span className="font-semibold text-slate-700">{formData.phone || 'N/A'}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-400">Email:</span>
+                <span className="font-semibold text-slate-700 truncate max-w-[180px]">{formData.email || 'N/A'}</span>
+              </div>
+            </div>
+            
+            {/* Separator line */}
+            <div className="w-full h-px bg-slate-100 mb-6" />
+            
+            {/* Primary Action Buttons */}
+            <div className="w-full">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowSuccess(false);
+                  onPageChange('home');
+                }}
+                className="w-full py-3.5 bg-[#00AEEF] hover:bg-[#0096ce] text-white rounded-xl text-xs font-sans font-black flex items-center justify-center gap-2 shadow-lg shadow-[#00AEEF]/20 transition duration-200 cursor-pointer animate-pulse"
+              >
+                <HomeIcon className="w-4 h-4" />
+                <span>Go to Homepage</span>
+              </button>
+            </div>
+            
+          </div>
+        </div>
+      )}
 
     </div>
   );
