@@ -4,11 +4,22 @@
  */
 
 import { useState } from 'react';
+import { Lang } from '../lib/translations';
 
-export default function WhatsAppFloat() {
+interface WhatsAppFloatProps {
+  lang: Lang;
+}
+
+export default function WhatsAppFloat({ lang }: WhatsAppFloatProps) {
   const [isHovered, setIsHovered] = useState(false);
   const whatsappNumber = '918588816148';
-  const message = encodeURIComponent('Hi, I would like to enquire about IVY Prints B2B services.');
+  
+  const text = lang === 'en' 
+    ? 'Hi, I would like to enquire about IVY Prints ID card software.' 
+    : 'नमस्ते, मुझे आईवी प्रिंट्स आईडी कार्ड सॉफ्टवेयर के बारे में जानकारी चाहिए।';
+  const message = encodeURIComponent(text);
+
+  const label = lang === 'en' ? 'Chat with us!' : 'हमसे बात करें!';
 
   return (
     <>
@@ -61,10 +72,10 @@ export default function WhatsAppFloat() {
           pointer-events: none;
         }
         .wa-label {
-          background: #0A1628;
+          background: #2A2421;
           color: white;
           font-family: system-ui, -apple-system, sans-serif;
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 700;
           padding: 8px 14px;
           border-radius: 10px;
@@ -86,7 +97,7 @@ export default function WhatsAppFloat() {
           right: -6px;
           top: 50%;
           transform: translateY(-50%);
-          border-left: 6px solid #0A1628;
+          border-left: 6px solid #2A2421;
           border-top: 6px solid transparent;
           border-bottom: 6px solid transparent;
         }
@@ -104,7 +115,7 @@ export default function WhatsAppFloat() {
       >
         {/* Tooltip label */}
         <span className={`wa-label ${isHovered ? 'visible' : ''}`}>
-          Chat with us!
+          {label}
         </span>
 
         {/* Icon circle */}

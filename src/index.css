@@ -5,6 +5,16 @@
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Sora", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-bg: #FFFDF9;
+  --color-brand-alt: #FFF4ED;
+  --color-brand-purple: #6355D8;
+  --color-brand-purple-dark: #5246B5;
+  --color-brand-orange: #FF6F43;
+  --color-brand-orange-dark: #E55B30;
+  --color-brand-text: #2A2421;
+  --color-brand-muted: #6E6259;
+  --color-brand-border: #F2EAE1;
 }
 
 html {
@@ -14,8 +24,8 @@ html {
 /* Base style resets to fit clean white design system */
 body {
   font-family: var(--font-sans);
-  background-color: #FFFFFF;
-  color: #0A1628;
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-text);
 }
 
 h1, h2, h3, h4, .font-display {
@@ -44,6 +54,15 @@ code, pre, .font-mono {
 }
 .animate-shake {
   animation: shake 0.25s ease-in-out;
+}
+
+/* Shimmer sweep for promo announcement bar */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  60%, 100% { transform: translateX(200%); }
+}
+.animate-shimmer {
+  animation: shimmer 2.5s ease-in-out infinite;
 }
 
 .bg-grid-lines-20 {

@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { PageId } from './types';
+import { Lang } from './lib/translations';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
@@ -21,6 +22,7 @@ import SignUp from './pages/SignUp';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [lang, setLang] = useState<Lang>('en');
 
   // Handle Hash/Deep Routing if user directly types hashtags in UI iframe
   useEffect(() => {
@@ -57,42 +59,47 @@ export default function App() {
   const isAuthPage = currentPage === 'signin' || currentPage === 'signup';
 
   return (
-    <div className="min-h-screen bg-white text-[#0A1628] flex flex-col justify-between selection:bg-[#00AEEF]/20 selection:text-[#0A1628]">
+    <div className="min-h-screen bg-brand-bg text-brand-text flex flex-col justify-between selection:bg-brand-purple/20 selection:text-brand-text">
       
       {/* Scroll indicator tracker */}
       <ScrollProgress />
 
       {/* Hide general navigation during auth flow for minimalist focus */}
       {!isAuthPage && (
-        <Navbar currentPage={currentPage} onPageChange={handlePageChange} />
+        <Navbar 
+          currentPage={currentPage} 
+          onPageChange={handlePageChange} 
+          lang={lang} 
+          onLangChange={setLang} 
+        />
       )}
 
       {/* Main content body pages matcher */}
       <main className="flex-grow">
-        {currentPage === 'home' && <Home onPageChange={handlePageChange} />}
-        {currentPage === 'features' && <Features onPageChange={handlePageChange} />}
-        {currentPage === 'how-it-works' && <HowItWorks onPageChange={handlePageChange} />}
-        {currentPage === 'contact' && <Contact onPageChange={handlePageChange} />}
+        {currentPage === 'home' && <Home onPageChange={handlePageChange} lang={lang} />}
+        {currentPage === 'features' && <Features onPageChange={handlePageChange} lang={lang} />}
+        {currentPage === 'how-it-works' && <HowItWorks onPageChange={handlePageChange} lang={lang} />}
+        {currentPage === 'contact' && <Contact onPageChange={handlePageChange} lang={lang} />}
 
         {/* Legal documents */}
         {(currentPage === 'privacy-policy' || 
           currentPage === 'terms-of-service' || 
           currentPage === 'refund-policy') && (
-            <LegalPages section={currentPage} onPageChange={handlePageChange} />
+            <LegalPages section={currentPage} onPageChange={handlePageChange} lang={lang} />
         )}
 
         {/* Credentials / Onboarders */}
-        {currentPage === 'signin' && <SignIn onPageChange={handlePageChange} />}
-        {currentPage === 'signup' && <SignUp onPageChange={handlePageChange} />}
+        {currentPage === 'signin' && <SignIn onPageChange={handlePageChange} lang={lang} />}
+        {currentPage === 'signup' && <SignUp onPageChange={handlePageChange} lang={lang} />}
       </main>
 
       {/* Hide footers during auth focus */}
       {!isAuthPage && (
-        <Footer onPageChange={handlePageChange} />
+        <Footer onPageChange={handlePageChange} lang={lang} />
       )}
 
       {/* Floating WhatsApp CTA */}
-      {!isAuthPage && <WhatsAppFloat />}
+      {!isAuthPage && <WhatsAppFloat lang={lang} />}
 
     </div>
   );
